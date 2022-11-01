@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'antd/dist/antd.min.css'
+import { Layout } from 'antd';
+import HeaderContainer from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import KNBGame from './components/KNBGame/KNBGame';
+import { Routes, Route} from 'react-router-dom';
+import MainPage from './components/MainPage/MainPage';
+
+const { Content, Footer } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Navbar></Navbar>
+      <Layout className="site-layout">
+        <HeaderContainer></HeaderContainer>
+        <Content className=' bg-gray-300'>
+          <Routes>
+            <Route path="/" element={<MainPage/>}/>
+            <Route path='/KNB' element={<KNBGame/>}/>
+            <Route path="/GTN"/>
+            {/* <GameScore avatar={"https://abrakadabra.fun/uploads/posts/2021-12/1640318109_8-abrakadabra-fun-p-beskonechnoe-leto-avatarki-8.jpg"}
+          count={10} player="JustLena" description={"Ваш противник"}></GameScore> */}
+            {/* <SelectMode></SelectMode> */}
+          </Routes>
+        </Content>
+        <Footer className='text-center'>OnlineMiniGames ©2022 Created by JustLena</Footer>
+      </Layout>
+    </Layout>
   );
 }
 
