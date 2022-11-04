@@ -1,28 +1,18 @@
 import { Card, Col, Grid, Row } from "antd"
-
+import CustomCard from "./CustomCard"
+import { useNavigate } from 'react-router-dom';
 
 function SelectMode() {
+    const navigate = useNavigate()
     return (
-        <div>
-            <Row gutter={50}>
-                <Col>
-                    <div className="site-card-border-less-wrapper w-fit">
-                        <Card title={"Режим ИИ"} hoverable>
-                            <img className="w-44" src="https://cdn-icons-png.flaticon.com/512/1173/1173049.png"></img>
-                        </Card>
-                    </div>
-                </Col>
-                <Col>
-                    <div className="site-card-border-less-wrapper w-fit">
-                        <Card title={"Режим PvP"} hoverable>
-                            <img className="w-44" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/versus-4547882-3762623.png"></img>
-                        </Card>
-                    </div>
-                </Col>
-            </Row>
-
-
-        </div>
+        <Row gutter={50}>
+            <Col>
+                <CustomCard title="Режим ИИ" image="https://cdn-icons-png.flaticon.com/512/1173/1173049.png" onClick={() => navigate("")}></CustomCard>
+            </Col>
+            <Col>
+                <CustomCard title="Режим PvP" image="https://cdn.iconscout.com/icon/premium/png-256-thumb/versus-4547882-3762623.png" onClick={() => navigate("")}></CustomCard>
+            </Col>
+        </Row>
     )
 }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import type { MenuProps } from 'antd';
+import { useNavigate, useMatch } from 'react-router-dom';
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -26,19 +27,21 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-    getItem('Главная страница', '1', <PieChartOutlined />),
-    getItem('К-Н-Б', '2', <PieChartOutlined />),
-    getItem('Угадай число', '3', <DesktopOutlined />),
-    getItem('Крестики-нолики', '4', <UserOutlined />),
+    getItem('Главная страница', '/', <PieChartOutlined />),
+    getItem('К-Н-Б', '/KNB', <PieChartOutlined />),
+    getItem('Угадай число', '/GTN', <DesktopOutlined />),
+    getItem('Крестики-нолики', '/XZ', <UserOutlined />),
 ];
 
 function Navbar() {
     const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate()
+    const defKey = useMatch("/*")
 
     return (
         <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
             <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+            <Menu onClick={({ key }) => navigate(key)} theme="dark" defaultSelectedKeys={[defKey?.pathname || ""]} mode="inline" items={items} />
         </Sider>
     )
 }
